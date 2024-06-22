@@ -33,7 +33,6 @@ def input_receipt(*prefix) -> str:
     print(f"Total price: {prefix[2] + prefix[4] + prefix[7]} baht.")
     print("===========================================")
 
-
 print("--------------Tour packet--------------")
 print("""1.Portugal  packet 50,000 baht.
 2.Bulgarian packet 45,000 baht.
