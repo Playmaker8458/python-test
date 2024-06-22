@@ -1,6 +1,14 @@
 import os
 import time
-
+''' 
+function dictionary_Package ทำการเก็บรายการ Package ทั้งหมด
+country_name ใช้ในการเก็บชื่อประเทศในรูปแบบ dict ซ้อน dict
+    - โดยการดึงค่าเพื่อดึงชื่อประเทศออกมาใช้งาน จะต้องอ้างอิงคีย์ที่เป็นตัวเลขเพื่อทำการดึงค่า ชื่อประเทศต่างๆออกมาใช้งาน
+price_Package ใช้ในการเก็บราคาเที่ยวบินต่างประเทศ ในรูปแบบ dict ซ้อน dict
+    - โดยการดึงค่าราคาเที่ยวบินออกมาใช้งาน จะต้องอ้างอิงคีย์ที่เป็นชื่อประเทศเพื่อทำการดึงค่า ราคาเที่ยวบินต่างประเทศออกมาใช้งาน
+Room price ใช้ในการเก็บราคาค่าเช้าห้องในรูปแบบ dict ซ้อน dict
+    - โดยการดึงค่าราคาค่าเช้าห้องออกมาใช้งาน จะต้องอ้างอิงคีย์ที่เป็นชื่อประเทศเพื่อทำการดึงค่า ราคาค่าเช้าห้องออกมาใช้งาน
+'''
 def dictionary_Package(Name_package : str, packet_number : int):
     try:
         dict_Package = {
@@ -25,7 +33,7 @@ def input_receipt(*prefix) -> str:
     print(f"Total price: {prefix[2] + prefix[4] + prefix[7]} baht.")
     print("===========================================")
 
-# packet_input, people_input, summation_packet, rent_day, price_car, many_room, many_day, price_room
+
 print("--------------Tour packet--------------")
 print("""1.Portugal  packet 50,000 baht.
 2.Bulgarian packet 45,000 baht.
@@ -34,12 +42,16 @@ print("""1.Portugal  packet 50,000 baht.
 5.Spain     packet 55,000 baht.""")
 print("---------------------------------------\n")
 try:
-    packet_input = input("Choose your packet number: ")
+    packet_input = input("Choose your packet number: ") # รับค่าตามคีย์ของ packet ใน dictionary
+    # ตัวแปร packet_number ใช้ในการเก็บค่าเพื่อนำมาเปรียบเทียบในเงื่อนไข
+    # ถ้าหากผู้ใช้รับค่าเข้ามาแล้วไม่ตรงกับคีย์ที่แสดงอยู่ก็ให้ แสดง Invalid Package ออกมาผ่านทางจอภาพ
     packet_number = dictionary_Package(Name_package="country_name", packet_number=int(packet_input))
     if packet_number == "ERROR":
         print("Invalid Package")
     else:
-        people_input = int(input("How many people are go: "))
+        people_input = int(input("How many people are go: ")) # รับค่าจำนวนคนที่จะเที่ยวบิน
+        # ถ้ารับค่าตรงกับคีย์ที่กำหนดให้ก็จะเอาชื่อประเทศมาทำการเข้า dict ซ้อน dict ที่ 2 
+        # เพื่อทำการดึงราคาเที่ยวบินต่างประเทศออกมาคำนวณโดยเอาไปคูณด้วยจำนวนคนที่ จะไปเที่ยวบินแล้ว เก็บลงไปที่ตัวแปร summation_packet
         price_packet = dictionary_Package(Name_package="price_Package",packet_number=packet_number)
         summation_packet = price_packet * people_input
         print("Want to rent a car?\n2000/1day")
@@ -58,7 +70,7 @@ try:
             price_room *= many_room * many_day
         else:
             many_room = many_day = price_room = 0
-        os.system('cls'); time.sleep(1.5)
+        os.system('cls'); time.sleep(1.5) # ใช้ในการเคลียหน้าจอส่วนบนออกไปทุก 1.5 วินาที
         input_receipt(packet_input, people_input, summation_packet, rent_day, price_car, many_room, many_day, price_room)
 except (ValueError, KeyboardInterrupt):
     print("error".upper())
