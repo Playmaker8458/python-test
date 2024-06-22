@@ -50,13 +50,15 @@ try:
         print("Invalid Package")
     else:
         people_input = int(input("How many people are go: ")) # รับค่าจำนวนคนที่จะเที่ยวบิน
-        # ถ้ารับค่าตรงกับคีย์ที่กำหนดให้ก็จะเอาชื่อประเทศมาทำการเข้า dict ซ้อน dict ที่ 2 
+        # ถ้ารับค่าตรงกับคีย์ที่กำหนดให้ก็จะเอาชื่อประเทศมาทำการเข้า dict ซ้อน dict ที่ 2 ในตัวแปรที่ชื่อว่า price_packet
         # เพื่อทำการดึงราคาเที่ยวบินต่างประเทศออกมาคำนวณโดยเอาไปคูณด้วยจำนวนคนที่ จะไปเที่ยวบินแล้ว เก็บลงไปที่ตัวแปร summation_packet
         price_packet = dictionary_Package(Name_package="price_Package",packet_number=packet_number)
         summation_packet = price_packet * people_input
-        print("Want to rent a car?\n2000/1day")
-        Rent_car = input("Y = yes , N = no: ").upper()
-        if Rent_car == "Y":
+        print("Want to rent a car?\n2000/1day") # แสดงวันเช้ารถและราคาออกมา
+        Rent_car = input("Y = yes , N = no: ").upper() # ถามผู้ใช้ว่าต้องการเช่ารถหรือไม่ (ถ้าเช้า ก็กด Y-y ถ้าไม่เช้า ก็กด N-n)
+        # ถ้าหาก รถเช้า มีค่าเท่ากับ Y แล้วเป็นจริง
+        # ให้รับค่าจำนวนวันที่จะเช้ารถ และ นำไปคำนวณกับโดยเอา ราคา 2000 คูณด้วย จำนวนวันที่จะเช้ารถ และนำไปเก็บที่ตัวแปร price_car
+        if Rent_car == "Y": 
             rent_day = int(input("How many day you want to rent?: "))
             price_car = 2000 * rent_day
         else:
