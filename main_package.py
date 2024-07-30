@@ -17,7 +17,7 @@ def dictionary_Package(Name_package : str, packet_number : int):
             "Room price"  : {"Portugal" : 2000, "Bulgarian" : 1500, "Poland" : 1200, "Monaco" : 1600, "Spain" : 2100}
         }
         return dict_Package[Name_package][packet_number]
-    except (KeyError,ValueError,ValueError):
+    except (KeyError,ValueError):
         return "error".upper()
 
 def input_receipt(*prefix) -> str:
